@@ -166,26 +166,65 @@ sequenceDiagram
 **Technical Requirements:**
 
 - **Hardware Specifications**:
-  - Camera: Resolution ≥ 1080p, FPS ≥ 30, RTSP/HTTP stream support.
-  - Server: Multi-core CPUs, GPUs with CUDA support, 32+ GB RAM, SSD storage.
-  - Network: Minimum bandwidth requirements; redundancy for high availability.
-  - Backup: Define data replication and recovery strategies.
+
+    **Compute Requirements**:
+    - CPU: Minimum 8 cores, recommended 16+ cores
+    - RAM: Minimum 32GB, recommended 64GB
+    - GPU: NVIDIA GPU with 8GB+ VRAM (Tesla T4 or better)
+    - Storage: 1TB+ NVMe SSD for primary storage
+    - Network: 10Gbps network interface
+
+    **Camera Requirements**:
+    - Resolution: 1080p minimum, 4K recommended
+    - Frame Rate: 30 FPS minimum
+    - Protocol Support: RTSP, ONVIF
+    - Low-light Performance: 0.01 lux or better
+    - Wide Dynamic Range (WDR): 120dB or higher
+
 
 - **Software Requirements**:
-  - Frameworks: TensorFlow/PyTorch for ML; Django for backend; React for frontend.
-  - Database: PostgreSQL for structured data; Redis for caching.
-  - Orchestration: Kubernetes/Docker Swarm for container management.
-  - Monitoring: Tools like Prometheus and Grafana for real-time insights.
 
+    **ML Framework**:
+    - TensorFlow 2.x
+    - CUDA 11.x and cuDNN
+    - OpenCV 4.x
+    - NumPy, Pandas, Scikit-learn
+
+    **Backend Stack**:
+    - Python 3.10+
+    - Django 4.x
+    - Django REST Framework
+    - PostgreSQL 14+
+    - Redis 6.x
+
+    **Frontend Stack**:
+    - Node.js 18+
+    - React 18+
+    - TypeScript 4.x
+    - WebSocket (Socket.io)
+
+    **DevOps Tools**:
+    - Docker & Docker Compose
+    - Kubernetes 1.24+
+    - Helm for package management
+    - Prometheus & Grafana
 ---
 
 #### **1.2 System Architecture Design**
-- **Modularity**: Define distinct components for ML, API, frontend, and data storage.
-- **Inter-module Communication**: Use RESTful APIs and WebSockets for synchronous/asynchronous data exchange.
-- **Data Flow**: Map end-to-end data handling, from ingestion (camera feed) to actionable insights (dashboard display).
-- **Scalability**: Plan horizontal scaling strategies, including container-based deployments.
-- **Security**: Include TLS for encrypted communications, role-based access control (RBAC), and intrusion detection.
-- **Disaster Recovery**: Design for automated backups and failover capabilities.
+
+**Data Processing Pipeline**
+```mermaid
+flowchart LR
+    A[Video Input] --> B[Frame Extraction]
+    B --> C[Face Detection]
+    C --> D[Face Alignment]
+    D --> E[Feature Extraction]
+    E --> F[Face Recognition]
+    F --> G[Expression Analysis]
+    G --> H[Result Aggregation]
+    H --> I[Alert Generation]
+    I --> J[Dashboard Update]
+```
 
 ---
 
